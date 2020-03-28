@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 19 00:59:23 2019
-gate_1 for vehicle classification to detect car or other vehicle
-@author: pawan
-#Number Plate detection
-"""
 import os
 import cv2
 import numpy as np
@@ -22,14 +14,14 @@ from object_detection.utils import visualization_utils as vis_util
 
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
+MODEL_FOLDER = "faster_rcnn_inception_v2_coco_2018_01_28"
 
-# Path to frozen detection graph .pb file, which contains the model that is used
-# for object detection.
-#PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_FOLDER, "frozen_model/frozen_inference_graph.pb")
-PATH_TO_CKPT = "/content/drive/My Drive/Colab Notebooks/TensorFlow/models/research/faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb"
+# Path to frozen detection graph .pb file, which contains the model that is used for object detection
+PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_FOLDER, "frozen_model/frozen_inference_graph.pb")
+
 # Path to label map file
-#PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_FOLDER, 'labelmap.pbtxt')
-PATH_TO_LABELS = '/content/drive/My Drive/Applied_AI_Course/Personal_case_study/Damage_detection/0_gates_structure/object_detection/data/mscoco_complete_label_map.pbtxt'
+PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_FOLDER, 'labelmap.pbtxt')
+
 # Number of classes the object detector can identify
 NUM_CLASSES = 4
 
@@ -92,12 +84,13 @@ def get_roi_items(img_org):
             objects.append(object_dict)
             #print (objects)
             
-    
+    #Get all the detected class labels in one list
     for y in objects:
         for keys in y.keys():
             m = list(y.keys())[0]
             items.append(m)
-            
+     
+    #Get co ordinates of the detected classes
     coordinates = vis_util.return_coordinates(
                 img,
                 np.squeeze(boxes),
