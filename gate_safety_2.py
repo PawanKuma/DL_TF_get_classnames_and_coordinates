@@ -25,6 +25,8 @@ PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_FOLDER, 'labelmap.pbtxt')
 # Number of classes the object detector can identify
 NUM_CLASSES = 4
 
+#define threshold of detection
+thresh= 0.7
 
 label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
 categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
@@ -79,7 +81,7 @@ def get_roi_items(img_org):
     objects = []
     for index, value in enumerate(classes[0]):
         object_dict = {}
-        if scores[0, index] > 0.75:
+        if scores[0, index] > thresh:
             object_dict[(category_index.get(value)).get('name')] = scores[0, index]
             objects.append(object_dict)
             #print (objects)
@@ -99,7 +101,7 @@ def get_roi_items(img_org):
                 category_index,
                 use_normalized_coordinates=True,
                 line_thickness=10,
-                min_score_thresh=0.75)
+                min_score_thresh=thresh)
     
     return  coordinates,items 
 
