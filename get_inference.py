@@ -68,7 +68,7 @@ detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 # Number of objects detected
 num_detections = detection_graph.get_tensor_by_name('num_detections:0')
     
-def get_roi_items(img):
+def get_roi_label(img):
     items = []
     coordinates = []
     #if you want to resize to tune inference
