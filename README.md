@@ -14,4 +14,4 @@ $python setup.py install
 
 Load get_inference file as module
 
-write code to pass image/frames through get_inference.get_roi_label function which returns roi and class_labels
+write code to pass image/frames through get_inference.get_roi_label function which returns Co ordinates and class_labels
