@@ -6,8 +6,10 @@ Download visulasiation_util.py and replace the visualistaion_util file from tens
 
 #step_2: rerun 
 $python setup.py build
+
 $python setup.py install
 
 #step_3: 
 Load get_inference file as module
+
 write code to pass image/frames through get_inference.get_roi_label function which returns roi and class_labels
